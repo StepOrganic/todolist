@@ -4,12 +4,25 @@
     <meta charset="utf-8" />
     <title>Step Organic</title>
     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript">
+      function demoFunction() {
+        var addButton = document.getElementById("add-box").value;
+        var container = document.getElementById("display-list");
+
+        alert(addButton);
+      }
+    </script>
   </head>
   <body>
     <h1>Organic To-do</h1>
     <form action="/">
-      <input type="text" placeholder="Add a new item" />
-      <input type="submit" value="Add" />
+      <input id="add-box" type="text" placeholder="Add a new item" />
+      <input
+        id="add-button"
+        type="submit"
+        value="Add"
+        onClick="demoFunction()"
+      />
     </form>
     <ul id="display-list">
       <li></li>
