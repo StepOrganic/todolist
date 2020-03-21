@@ -4,28 +4,30 @@
     <meta charset="utf-8" />
     <title>Step Organic</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript">
-      function demoFunction() {
-        var addButton = document.getElementById("add-box").value;
-        var container = document.getElementById("display-list");
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-        alert(addButton);
-      }
-    </script>
   </head>
   <body>
-    <h1>Organic To-do</h1>
-    <form action="/">
-      <input id="add-box" type="text" placeholder="Add a new item" />
-      <input
-        id="add-button"
-        type="submit"
-        value="Add"
-        onClick="demoFunction()"
-      />
-    </form>
-    <ul id="display-list">
-      <li></li>
-    </ul>
+    <div id="to-do-display">
+      <h1>Organic To-do</h1>
+      <form action="#">
+        <div class="flexbox">
+            <input id="input-box" type="text" placeholder="Add a new item"/>
+            <input
+              id="add-button"
+              type="submit"
+              value="Add"
+              onClick="addToDoItem()"
+            />
+        </div>
+      </form>
+      <ul id="display-list"></ul>
+    </div>
+
+   
+
+
+    <script src="index.js"></script>
   </body>
+
 </html>

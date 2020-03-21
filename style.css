@@ -1,0 +1,27 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+#to-do-display{
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+#display-list{
+    padding: 0;
+}
+
+#display-list li{
+    display: block;
+    margin: 10px 0;
+
+}
+.flexbox{
+    display: flex;
+}
+#input-box{
+    flex-grow: 2;
+}
+#add-button{
+    flex-grow:1;
+    margin-left: 10px;
+}
