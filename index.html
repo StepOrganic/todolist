@@ -10,24 +10,15 @@
   <body>
     <div id="to-do-display">
       <h1>Organic To-do</h1>
-      <form action="#">
+      <form onsubmit="addToDoItem();">
         <div class="flexbox">
-            <input id="input-box" type="text" placeholder="Add a new item"/>
-            <input
-              id="add-button"
-              type="submit"
-              value="Add"
-              onClick="addToDoItem()"
-            />
+          <input id="input-box" type="text" placeholder="Add a new item" />
+          <input id="add-button" type="submit" value="Add" />
         </div>
       </form>
       <ul id="display-list"></ul>
     </div>
 
-   
-
-
     <script src="index.js"></script>
   </body>
-
 </html>
