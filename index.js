@@ -1,8 +1,12 @@
 const LOCAL_STORAGE_KEY = "toDoList";
 
+// Starts here, once JS is loaded
+// checks if localStorage contains a todo list
+// if there is NO todo list, initialize local storage with empty list
 if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
   initStorageWithEmptyToDoList();
 } else {
+  // else run an update, so it renders the UI with the existing list.
   updateToDoList();
 }
 
