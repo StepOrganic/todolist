@@ -53,10 +53,24 @@ function addItemToListUI(item) {
   if(item.length >0){
     container.insertAdjacentHTML(
       "beforeend",
-      "<li class='btn btn-light' id='task-item'>" + item + "</li>"
+      "<li class='btn btn-light task-item'>" + item + "</li>"
     );
+
+    const itemButton = document.querySelectorAll('.task-item')
+    console.log(itemButton);
+
+    for (var i = 0 ; i < itemButton.length; i++) {
+      itemButton[i].addEventListener('click' , deleteItemFromLocalStorage(), false)
+      }
+   }  
+
+   function deleteItemFromLocalStorage(item){
+    console.log("delete attempted")  
+    }
   }
-}
+
+
+  
 
 const formToSubmit = document.getElementById("toDoForm");
     function handleForm(event) { 
@@ -66,5 +80,10 @@ const formToSubmit = document.getElementById("toDoForm");
     formToSubmit.addEventListener('submit', handleForm);
 
     
+
+
     
+
+    
+
     
