@@ -28,7 +28,7 @@ function updateToDoList() {
   // append new item to list
   // addItemToListUI(newToDoItem);
   addItemToList(newToDoItem);
-  deleteItemFromList(oldToDoItem)
+  removeItemFromList()
 
 }
 
@@ -75,7 +75,7 @@ function addItemToListUI(item) {
 
 // *** Procedure: Delete an Item
   function getItemToDelete() {
-  
+    removeItemFromList(item)
   }
   function removeItemFromList(item) {
     // update storage
