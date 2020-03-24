@@ -28,9 +28,11 @@ function updateToDoList() {
   // append new item to list
   // addItemToListUI(newToDoItem);
   addItemToList(newToDoItem);
+  deleteItemFromList(oldToDoItem)
 
 }
 
+// *** Procedure: Add an Item
 function getNewToDoItem() {
   const inputBox = document.getElementById("input-box");
   return inputBox.value;
@@ -61,19 +63,38 @@ function addItemToListUI(item) {
     //if any, attach 'onclick' to each populated element for delete confirmation
     const itemButton = document.querySelectorAll('.task-item')
     for (var i = 0 ; i < itemButton.length; i++) {
-      itemButton[i].addEventListener('click' , deleteDialog)
+      itemButton[i].addEventListener('click' , deleteModalPopUp)
     }
    }  
   }
+
   //Delete Confirmation dialog box
-  function deleteDialog(item){ 
-    const delModalShow = () => {document.getElementById('delModal').style.display='block';}
-    delModalShow();
+  function deleteModalPopUp(item){ 
+    document.getElementById('delModal').style.display='block';
   }
-  // Remove item from LocalStorage
-  function deleteFromList(){
+
+// *** Procedure: Delete an Item
+  function getItemToDelete() {
+  
+  }
+  function removeItemFromList(item) {
+    // update storage
+    removeItemFromLocalStorage(item);
+
+    //ToDo: instead of removing per item,
+    // refresh UI with the entire new ToDo list.
+    removeItemFromListUI(item);
+  }
+  function removeItemFromLocalStorage(item) {
+    localStorage.removeItem(LOCAL_STORAGE_KEY, [item]);
+  }
+  function removeItemFromListUI(){
 
   }
+
+
+
+
 
   
 
