@@ -1,5 +1,7 @@
 const LOCAL_STORAGE_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
+const container = document.getElementById("display-list");
+
 
 
 // Starts here, once JS is loaded
@@ -34,7 +36,7 @@ function updateToDoList() {
 
 // *** Procedure: Add an Item
 function getNewToDoItem() {
-  const inputBox = document.getElementById("input-box");
+  // const inputBox = document.getElementById("input-box");
   return inputBox.value;
 }
 
@@ -52,7 +54,7 @@ function addItemToLocalStorage(item) {
 }
 
 function addItemToListUI(item) {
-  const container = document.getElementById("display-list");
+  // const container = document.getElementById("display-list");
   
   //Check if any task-item populated
   if(item.length >0){
@@ -63,7 +65,7 @@ function addItemToListUI(item) {
     //if any, attach 'onclick' to each populated element for delete confirmation
     const itemButton = document.querySelectorAll('.task-item')
     for (var i = 0 ; i < itemButton.length; i++) {
-      itemButton[i].addEventListener('click' , deleteModalPopUp)
+      itemButton[i].addEventListener('click' , deleteModalPopUp, getItemToDelete(itemButton[i]))
     }
    }  
   }
@@ -74,9 +76,10 @@ function addItemToListUI(item) {
   }
 
 // *** Procedure: Delete an Item
-  function getItemToDelete() {
+  function getItemToDelete(item) {
     removeItemFromList(item)
   }
+
   function removeItemFromList(item) {
     // update storage
     removeItemFromLocalStorage(item);
@@ -85,11 +88,13 @@ function addItemToListUI(item) {
     // refresh UI with the entire new ToDo list.
     removeItemFromListUI(item);
   }
+
   function removeItemFromLocalStorage(item) {
     localStorage.removeItem(LOCAL_STORAGE_KEY, [item]);
   }
-  function removeItemFromListUI(){
 
+  function removeItemFromListUI(item){
+    console.log(item)
   }
 
 
