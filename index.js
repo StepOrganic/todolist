@@ -1,6 +1,7 @@
 const LOCAL_STORAGE_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
 
+
 // Starts here, once JS is loaded
 // checks if localStorage contains a todo list
 // if there is NO todo list, initialize local storage with empty list
@@ -50,25 +51,29 @@ function addItemToLocalStorage(item) {
 
 function addItemToListUI(item) {
   const container = document.getElementById("display-list");
+  
+  //Check if any task-item populated
   if(item.length >0){
     container.insertAdjacentHTML(
       "beforeend",
       "<li class='btn btn-light task-item'>" + item + "</li>"
     );
-
+    //if any, attach 'onclick' to each populated element for delete confirmation
     const itemButton = document.querySelectorAll('.task-item')
-    console.log(itemButton);
-
     for (var i = 0 ; i < itemButton.length; i++) {
-      itemButton[i].addEventListener('click' , deleteItemFromLocalStorage(), false)
-      }
-   }  
-
-   function deleteItemFromLocalStorage(item){
-    console.log("delete attempted")  
+      itemButton[i].addEventListener('click' , deleteDialog)
     }
+   }  
   }
+  //Delete Confirmation dialog box
+  function deleteDialog(item){ 
+    const delModalShow = () => {document.getElementById('delModal').style.display='block';}
+    delModalShow();
+  }
+  // Remove item from LocalStorage
+  function deleteFromList(){
 
+  }
 
   
 
