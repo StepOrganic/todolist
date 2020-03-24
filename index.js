@@ -18,11 +18,10 @@ function initStorageWithEmptyToDoList() {
 function updateToDoList() {
   // get current list
   const currentList = localStorage.getItem(LOCAL_STORAGE_KEY);
-  
+
   // get new item from input
   const newToDoItem = getNewToDoItem();
-  console.log(newToDoItem);
-  
+
   // append new item to list
   addItemToListUI(newToDoItem);
 }
@@ -54,5 +53,9 @@ function addItemToListUI(item) {
   );
 }
 const formToSubmit = document.getElementById("toDoForm");
-    function handleForm(event) { event.preventDefault(); } 
-    formToSubmit.addEventListener('submit', handleForm);
+function handleForm(event) {
+  event.preventDefault();
+  updateToDoList();
+}
+
+formToSubmit.addEventListener("submit", handleForm);
