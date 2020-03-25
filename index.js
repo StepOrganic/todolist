@@ -25,13 +25,10 @@ function updateToDoList() {
   
   // get new item from input
   const newToDoItem = getNewToDoItem();
-  console.log(newToDoItem);
   
   // append new item to list
   // addItemToListUI(newToDoItem);
   addItemToList(newToDoItem);
-  removeItemFromList()
-
 }
 
 // *** Procedure: Add an Item
@@ -65,21 +62,27 @@ function addItemToListUI(item) {
     //if any, attach 'onclick' to each populated element for delete confirmation
     const itemButton = document.querySelectorAll('.task-item')
     for (var i = 0 ; i < itemButton.length; i++) {
-      itemButton[i].addEventListener('click' , deleteModalPopUp, getItemToDelete(itemButton[i]))
+      itemButton[i].addEventListener('click' , deleteModalPopUp)
     }
    }  
   }
 
-  //Delete Confirmation dialog box
   function deleteModalPopUp(item){ 
     document.getElementById('delModal').style.display='block';
-  }
 
+      console.log(" item-button Clicked + deleteModal pops up");
+      console.log(item);
+      console.log(item.target);
+  } 
 // *** Procedure: Delete an Item
-  function getItemToDelete(item) {
-    removeItemFromList(item)
-  }
 
+  function getItemToDelete(item) {
+    // console.log(item);
+    
+    removeItemFromList(item);
+
+  }
+  
   function removeItemFromList(item) {
     // update storage
     removeItemFromLocalStorage(item);
@@ -94,16 +97,12 @@ function addItemToListUI(item) {
   }
 
   function removeItemFromListUI(item){
-    console.log(item)
+    console.log("Delete button Clicked!")
+    console.log(item);
   }
 
 
-
-
-
-  
-
-const formToSubmit = document.getElementById("toDoForm");
+  const formToSubmit = document.getElementById("toDoForm");
     function handleForm(event) { 
       event.preventDefault(); 
       inputBox.value = "";
