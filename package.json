@@ -1,0 +1,22 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "stores to dos",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StepOrganic/todolist.git"
+  },
+  "author": "stepOrganic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StepOrganic/todolist/issues"
+  },
+  "homepage": "https://github.com/StepOrganic/todolist#readme",
+  "devDependencies": {
+    "jest": "^25.2.3"
+  }
+}
