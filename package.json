@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/StepOrganic/todolist/issues"
   },
-  "homepage": "https://github.com/StepOrganic/todolist#readme"
+  "homepage": "https://github.com/StepOrganic/todolist#readme",
+  "devDependencies": {
+    "jest": "^25.2.3"
+  }
 }
