@@ -25,3 +25,8 @@ body{
     flex-grow:1;
     margin-left: 10px;
 }
+
+input:focus::-webkit-input-placeholder 
+{
+    color: transparent;
+}
