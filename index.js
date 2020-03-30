@@ -43,7 +43,7 @@ function getNewToDoItem() {
 
 function addItemToLocalStorage(item) {
   let currentList = localStorage.getItem(TO_DO_LIST_KEY);
-  let updatedArray = currentList.split(',');
+  let updatedArray = currentList.length === 0 ? [] : currentList.split(",");
   updatedArray.push(item);
 
   localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
