@@ -12,6 +12,7 @@ window.onload = function(){
     // else run an update, so it renders the UI with the existing list.
     updateToDoList();
   }
+  inputBox.focus();
 }
 
 function initStorageWithEmptyToDoList() {
@@ -24,7 +25,8 @@ function updateToDoList() {
   const newToDoItem = getNewToDoItem();
 
   if(!newToDoItem == " "){
-    addItemToList(newToDoItem);
+    // onSubmit, if input box is NOT empty
+    addItemToLocalStorage(newToDoItem);
   }
   else if (localStorage.getItem(TO_DO_LIST_KEY)) {
     const itemsList = localStorage.getItem(TO_DO_LIST_KEY);
@@ -39,44 +41,30 @@ function getNewToDoItem() {
   return inputBox.value;
 }
 
-function addItemToList(item) {
-
-  addItemToLocalStorage(item);
-
-  //ToDo: instead of adding per item,
-  // refresh UI with the entire new ToDo list.
-  addItemToListUI(item);
-}
-
 function addItemToLocalStorage(item) {
-  const originalArray = localStorage.getItem(TO_DO_LIST_KEY);
   let currentList = localStorage.getItem(TO_DO_LIST_KEY);
-  let updatedArray = currentList.split(',');
+  let updatedArray = currentList.length === 0 ? [] : currentList.split(",");
   updatedArray.push(item);
 
   localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
+  // After we update the DB, we trigger a refresh on the UI with the complete new list.
+  window.location.reload();
 }
 
-function addItemToListUI(item) {
-  // const container = document.getElementById("display-list");
-  
+function addItemToListUI(item) {  
   //Check if any task-item populated
   if(item.length >0){
-    var i;
-    for (i = 0; i < item.length; i++) {
       container.insertAdjacentHTML(
       "beforeend",
       "<li class='btn btn-light task-item'>" + item + "</li>"
     );
-  }
-    
+      }
     //if any, attach 'onclick' to each populated element for delete confirmation
     const itemButton = document.querySelectorAll('.task-item')
     for (var i = 0 ; i < itemButton.length; i++) {
       itemButton[i].addEventListener('click' , deleteModalPopUp)
       itemButton[i].setAttribute("id", i)
-    }
-   }  
+    } 
   }
 
   let toBeDeleted;
@@ -91,44 +79,21 @@ function addItemToListUI(item) {
 
   function getItemToDelete() {
     let item = toBeDeleted;
-    removeItemFromList(item);
-    document.getElementById('delModal').style.display='none'
-  }
-  
-  function removeItemFromList(item) {
-    // update storage
     removeItemFromLocalStorage(item);
-    removeItemFromListUI(item);
+    document.getElementById('delModal').style.display='none'
   }
 
   function removeItemFromLocalStorage(item) {
-    let trashItem = item.innerText;
-    console.log(item.id);
-
-    const originalArray = localStorage.getItem(TO_DO_LIST_KEY);
-    console.log(originalArray);
-
     let currentList = localStorage.getItem(TO_DO_LIST_KEY);
-    console.log(currentList);
-
     let updatedArray = currentList.split(',');
-    console.log(updatedArray);
-
-    let removed = updatedArray.indexOf(item.innerText);
-    console.log(removed); 
-
-
-    // Correction needed: logging the first matching example item.
+    let removed = item.id;
+    console.log(removed)
 
     updatedArray.splice(removed,1)
     console.log(updatedArray);
 
-  
     localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
-  }
-
-  function removeItemFromListUI(item){
-    container.removeChild(item);
+    window.location.reload();
   }
 
   const formToSubmit = document.getElementById("toDoForm");
@@ -138,3 +103,8 @@ function addItemToListUI(item) {
     } 
     formToSubmit.addEventListener('submit', handleForm);
 
+  function clearList(){
+    localStorage.setItem(TO_DO_LIST_KEY, []);
+    // After we update the DB, we trigger a refresh on the UI with the complete new list.
+    window.location.reload();
+  }
