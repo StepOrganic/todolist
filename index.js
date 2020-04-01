@@ -63,7 +63,7 @@ function addItemToListUI(item) {
     const itemButton = document.querySelectorAll('.task-item')
     for (var i = 0 ; i < itemButton.length; i++) {
       itemButton[i].addEventListener('click' , deleteModalPopUp)
-      itemButton[i].setAttribute("id", i+1)
+      itemButton[i].setAttribute("id", i)
     } 
   }
 
@@ -103,3 +103,8 @@ function addItemToListUI(item) {
     } 
     formToSubmit.addEventListener('submit', handleForm);
 
+  function clearList(){
+    localStorage.setItem(TO_DO_LIST_KEY, []);
+    // After we update the DB, we trigger a refresh on the UI with the complete new list.
+    window.location.reload();
+  }
