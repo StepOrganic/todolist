@@ -1,4 +1,5 @@
-import { addItem, deleteItem } from "./src/storage";
+import storage from "./src/storage";
+const { addItem, deleteItem } = storage;
 const TO_DO_LIST_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
 const container = document.getElementById("display-list");
@@ -65,15 +66,7 @@ function getItemToDelete() {
 }
 
 function removeItemFromLocalStorage(item) {
-  let currentList = localStorage.getItem(TO_DO_LIST_KEY);
-  let updatedArray = currentList.split(",");
-  let removed = item.id;
-  console.log(removed);
-
-  updatedArray.splice(removed, 1);
-  console.log(updatedArray);
-
-  localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
+  deleteItem(item.id);
   window.location.reload();
 }
 
