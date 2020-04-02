@@ -1,3 +1,4 @@
+import { addItem, deleteItem } from "./src/storage";
 const TO_DO_LIST_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
 const container = document.getElementById("display-list");
@@ -16,7 +17,8 @@ function updateToDoList() {
 
   if (!newToDoItem == " ") {
     // onSubmit, if input box is NOT empty
-    addItemToLocalStorage(newToDoItem);
+    // addItemToLocalStorage(newToDoItem);
+    addItem(newToDoItem);
   } else {
     const itemsList = localStorage.getItem(TO_DO_LIST_KEY);
     const storedArray = itemsList.split(",");
@@ -28,16 +30,6 @@ function updateToDoList() {
 
 function getNewToDoItem() {
   return inputBox.value;
-}
-
-function addItemToLocalStorage(item) {
-  let currentList = localStorage.getItem(TO_DO_LIST_KEY) || [];
-  let updatedArray = currentList.split(",");
-  updatedArray.push(item);
-
-  localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
-  // After we update the DB, we trigger a refresh on the UI with the complete new list.
-  window.location.reload();
 }
 
 function addItemToListUI(item) {
