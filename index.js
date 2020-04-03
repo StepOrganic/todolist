@@ -12,7 +12,7 @@ window.onload = function() {
   inputBox.focus();
 };
 
-function updateToDoList() {
+export function updateToDoList() {
   // get new item from input
   const newToDoItem = getNewToDoItem();
 
