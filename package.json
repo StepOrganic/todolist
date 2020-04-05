@@ -4,7 +4,8 @@
   "description": "stores to dos",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/StepOrganic/todolist#readme",
   "devDependencies": {
-    "jest": "^25.2.3"
+    "jest": "^25.2.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
