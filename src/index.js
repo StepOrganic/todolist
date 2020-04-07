@@ -1,58 +1,62 @@
 const TO_DO_LIST_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
 const container = document.getElementById("display-list");
+const clearButton = document.getElementById("clear-button");
 
-// import storage from "./src/storage";
-// Starts here, once JS is loaded
-// checks if localStorage contains a todo list
-// if there is NO todo list, initialize local storage with empty list
 window.onload = function () {
   const todoForm = document.getElementById("toDoForm");
   todoForm.addEventListener("submit", submitForm);
-
-  if (!localStorage.getItem(TO_DO_LIST_KEY)) {
-    initStorageWithEmptyToDoList();
-  } else {
-    // else run an update, so it renders the UI with the existing list.
-    updateToDoList();
-  }
+  clearButton.addEventListener("click", clearList);
+  refreshUI();
   inputBox.focus();
 };
 
-function initStorageWithEmptyToDoList() {
-  console.log("init");
-  localStorage.setItem(TO_DO_LIST_KEY, []);
-  updateToDoList();
-}
-
 function submitForm(event) {
   event.preventDefault();
-  console.log("submit");
-  console.log(event.target.value);
-  console.log(inputBox.value);
+
+  const newToDoItem = getNewToDoItem();
+  addItemToLocalStorage(newToDoItem);
+  refreshUI();
 }
 
-function updateToDoList() {
-  console.log("update to do list");
-  // get new item from input
-  const newToDoItem = getNewToDoItem();
-  event.preventDefault();
+function refreshUI() {
+  clearTodoListFromUI();
+  clearInputBox();
+  addTodoListToUI();
+}
 
-  if (!newToDoItem == " ") {
-    // onSubmit, if input box is NOT empty
-    addItemToLocalStorage(newToDoItem);
-  } else if (localStorage.getItem(TO_DO_LIST_KEY)) {
-    const itemsList = localStorage.getItem(TO_DO_LIST_KEY);
-    const storedArray = itemsList.split(",");
-    storedArray.forEach((element) => addItemToListUI(element));
-  }
+function clearInputBox() {
+  inputBox.value = "";
+}
+
+function clearTodoListFromUI() {
+  container.innerHTML = "";
 }
 
 // *** Procedure: Adding an Item
+// *** UI ***
+function addTodoListToUI() {
+  const itemsList = localStorage.getItem(TO_DO_LIST_KEY);
+  const storedArray = itemsList.split(",");
+  storedArray.forEach((element) => addItemToListUI(element));
+}
+
+function addItemToListUI(item) {
+  container.insertAdjacentHTML(
+    "beforeend",
+    "<li class='btn btn-light task-item'>" + item + "</li>"
+  );
+
+  // attach 'onclick' to each populated element for delete confirmation
+  const itemButton = document.querySelectorAll(".task-item");
+  for (var i = 0; i < itemButton.length; i++) {
+    itemButton[i].addEventListener("click", deleteModalPopUp);
+    itemButton[i].setAttribute("id", i);
+  }
+}
 
 function getNewToDoItem() {
   const inputBox = document.getElementById("input-box");
-  console.log(`INPUT VALUE: > ${inputBox.value}`);
   return inputBox.value;
 }
 
@@ -60,27 +64,11 @@ function addItemToLocalStorage(item) {
   let currentList = localStorage.getItem(TO_DO_LIST_KEY);
   let updatedArray = currentList.length === 0 ? [] : currentList.split(",");
   updatedArray.push(item);
-
   localStorage.setItem(TO_DO_LIST_KEY, updatedArray);
-  // After we update the DB, we trigger a refresh on the UI with the complete new list.
-  window.location.reload();
 }
 
-function addItemToListUI(item) {
-  //Check if any task-item populated
-  if (item.length > 0) {
-    container.insertAdjacentHTML(
-      "beforeend",
-      "<li class='btn btn-light task-item'>" + item + "</li>"
-    );
-  }
-  //if any, attach 'onclick' to each populated element for delete confirmation
-  const itemButton = document.querySelectorAll(".task-item");
-  for (var i = 0; i < itemButton.length; i++) {
-    itemButton[i].addEventListener("click", deleteModalPopUp);
-    itemButton[i].setAttribute("id", i);
-  }
-}
+// TODO: Fix delete flow.
+// *** Procedure: Delete an Item
 
 let toBeDeleted;
 
@@ -89,8 +77,6 @@ function deleteModalPopUp(event) {
   const item = event.target;
   toBeDeleted = item;
 }
-
-// *** Procedure: Delete an Item
 
 function getItemToDelete() {
   let item = toBeDeleted;
@@ -111,18 +97,7 @@ function removeItemFromLocalStorage(item) {
   window.location.reload();
 }
 
-// const formToSubmit = document.getElementById("toDoForm");
-// function handleForm(event) {
-//   event.preventDefault();
-//   inputBox.value = "";
-// }
-// formToSubmit.addEventListener("submit", handleForm);
-
 function clearList() {
   localStorage.setItem(TO_DO_LIST_KEY, []);
-  // After we update the DB, we trigger a refresh on the UI with the complete new list.
-  window.location.reload();
+  refreshUI();
 }
-
-console.log(`window in js ${window}`);
-console.log(`locale storage ${localStorage.getItem(TO_DO_LIST_KEY)}`);
