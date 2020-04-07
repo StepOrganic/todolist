@@ -2,11 +2,13 @@ const TO_DO_LIST_KEY = "toDoList";
 const inputBox = document.getElementById("input-box");
 const container = document.getElementById("display-list");
 const clearButton = document.getElementById("clear-button");
+const deleteButton = document.getElementById("delete-button");
 
 window.onload = function () {
   const todoForm = document.getElementById("toDoForm");
   todoForm.addEventListener("submit", submitForm);
   clearButton.addEventListener("click", clearList);
+  deleteButton.addEventListener("click", getItemToDelete);
   refreshUI();
   inputBox.focus();
 };
