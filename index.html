@@ -12,15 +12,19 @@
   <body>
     <div id="to-do-display">
       <h1>Organic To-do</h1>
-      <form onsubmit="updateToDoList()" id="toDoForm">
+      <form id="toDoForm">
         <div class="flexbox">
           <input id="input-box" type="text" placeholder="Add a new item" />
           <input id="add-button" type="submit" value="Add" />
         </div>
       </form>
       <ul id="display-list"></ul>
-      <input id="clear-button" value="Clear" type="button" onclick="clearList()" />
-
+      <input
+        id="clear-button"
+        value="Clear"
+        type="button"
+        onclick="clearList()"
+      />
     </div>
 
     <!-- Delete Modal -->
@@ -29,17 +33,25 @@
         <div class="container">
           <h1>Delete Account</h1>
           <p>Are you sure you want to delete your account?</p>
-    
+
           <div class="clearfix">
-            <button type="button" 
-                    class="cancelbtn"
-                    onclick="document.getElementById('delModal').style.display='none'">Cancel</button>
-            <button type="button" class="deletebtn" onclick="getItemToDelete()">Delete</button>
+            <button
+              type="button"
+              class="cancelbtn"
+              onclick="document.getElementById('delModal').style.display='none'"
+            >
+              Cancel
+            </button>
+            <button type="button" class="deletebtn" onclick="getItemToDelete()">
+              Delete
+            </button>
           </div>
         </div>
       </form>
     </div>
-
-    <script src="index.js"></script>
+    <script>
+      console.log(`window ${window}`);
+    </script>
+    <script src="./dist/main.js"></script>
   </body>
 </html>

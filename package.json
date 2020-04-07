@@ -2,10 +2,11 @@
   "name": "todolist",
   "version": "1.0.0",
   "description": "stores to dos",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "jest",
-    "start": "webpack"
+    "build": "webpack",
+    "dev": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
