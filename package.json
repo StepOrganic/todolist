@@ -2,9 +2,11 @@
   "name": "todolist",
   "version": "1.0.0",
   "description": "stores to dos",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack",
+    "dev": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/StepOrganic/todolist#readme",
   "devDependencies": {
-    "jest": "^25.2.3"
+    "jest": "^25.2.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
